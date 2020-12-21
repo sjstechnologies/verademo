@@ -45,6 +45,22 @@ stages:
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
 
+- task: Veracode@3
+  inputs:
+    ConnectionDetailsSelection: 'Endpoint'
+    AnalysisService: 'Veracode Analysis Center'
+    veracodeAppProfile: '$(system.teamProject)'
+    version: '$(build.buildNumber)'
+    filepath: '$(build.artifactstagingdirectory)'
+    sandboxName: 'Release_Candidate'
+    createSandBox: true
+    createProfile: true
+    failTheBuildIfVeracodeScanDidNotInitiate: true
+    scanStatusCheckInterval: '60'
+    importResults: true
+    failBuildOnPolicyFail: false
+
+
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
