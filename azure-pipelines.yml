@@ -60,6 +60,17 @@ stages:
         importResults: false
         failBuildOnPolicyFail: false
 
+    - task: Veracode Flaw Importer@3
+      inputs:
+        ConnectionDetailsSelection: 'Endpoint'
+        AnalysisService: 'Veracode Analysis Center'
+        veracodeAppProfile: '$(system.teamProject)'
+        sandboxName: 'Release_Candidate'
+        importType: 'All Unmitigated Flaws Violating Policy'
+        workItemType: 'Issue'
+        area: '$(system.teamProject)'
+        flawImportLimit: '1000'
+
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
