@@ -70,6 +70,19 @@ stages:
         workItemType: 'Issue'
         area: '$(system.teamProject)'
         flawImportLimit: '1000'
+        
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Azure subscription 1 (d9d1241a-9ddb-491a-9a50-caed368eae49)'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          echo ---download the latest version of the Veracode pipeline scan CI utility
+          curl -O https://downloads.veracode.com/securityscan/pipeline-scan-LATEST.zip
+          echo ---extract the Veracode pipeline scan CI utility
+          unzip -o pipeline-scan-LATEST.zip
+          echo ---run the a Veracode Static Analysis scan using the Veracode pipeline scan CI utility
+          java -jar pipeline-scan.jar -vid "9b8549b91f82b1b1f6d4b35cc968ad48" -vkey "7faecab536dfd6f9a4d1625890563065db3cd13fe17aede5117f395a985726062eb450210c95c622af121a82d9bdb2b999a8a5d2a3d2bc4ae183fe2b8de6513c" -f "../target/verademo.war"
 
 - stage: Deploy
   displayName: Deploy stage
