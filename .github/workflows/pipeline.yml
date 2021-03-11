@@ -1,16 +1,44 @@
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+Skip to content
+Search or jump to…
 
-name: Java CI with Maven
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@sjstechnologies 
+Learn Git and GitHub without any code!
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+
+unregistered436
+/
+Verademo-master
+2
+14
+Code
+Issues
+Pull requests
+4
+Actions
+Projects
+Wiki
+Security
+Insights
+Verademo-master/.github/workflows/Pipeline.yml
+@unregistered436
+unregistered436 Update Pipeline.yml
+Latest commit f2db30b on Mar 19, 2020
+ History
+ 1 contributor
+29 lines (21 sloc)  873 Bytes
+  
+name: Verademo-Pipeline
+
+on: [push]
 
 jobs:
-  build:
+  build-pipelinescan:
 
     runs-on: ubuntu-latest
 
@@ -20,10 +48,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+  
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
-      
-   - name: Build with Maven
       run: mvn clean verify
 
     - name: Download the Pipeline Scanner
@@ -36,4 +62,3 @@ jobs:
  
     - name: Engage Ludicrous Speed - Run Pipeline Scan
       run: java -jar pipeline-scan.jar -f /home/runner/work/Verademo-master/Verademo-master/target/verademo.war -vid "${{secrets.VERACODE_API_ID}}" -vkey "${{secrets.VERACODE_API_SECRET}}" --fail_on_severity="Very High, High" --issue_details true
-      
