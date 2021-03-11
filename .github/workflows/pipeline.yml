@@ -13,6 +13,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Setup Python
+      uses: actions/setup-python@v2.2.1
+    - name: execute py script # run the run.py to get the latest data
+            run: |
+              python DynamicAnalysis.py
   
     - name: Build with Maven
       run: mvn clean verify
