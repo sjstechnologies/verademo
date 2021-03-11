@@ -27,3 +27,4 @@ jobs:
  
     - name: Engage Ludicrous Speed - Run Pipeline Scan
       run: java -jar pipeline-scan.jar -f /home/runner/work/verademo/verademo/target/verademo.war -vid "${{secrets.VERACODE_API_ID}}" -vkey "${{secrets.VERACODE_API_SECRET}}" --fail_on_severity="Very High, High" --issue_details true
+    
