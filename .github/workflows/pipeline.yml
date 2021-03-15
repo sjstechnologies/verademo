@@ -27,22 +27,15 @@ jobs:
  
     - name: Engage Ludicrous Speed - Run Pipeline Scan
       run: java -jar pipeline-scan.jar -f /home/runner/work/verademo/verademo/target/verademo.war -vid "${{secrets.VERACODE_API_ID}}" -vkey "${{secrets.VERACODE_API_SECRET}}" --fail_on_severity="Very High, High" --issue_details true --jo true
-      
-		- name: Veracode Static Analysis Pipeline Scan and SARIF import
-		  # You may pin to the exact commit or the version.
-  		# uses: veracode/veracode-pipeline-scan-results-to-sarif@c4e3ac33a116df4b7074d53747d8814e8fdf974b
-  		uses: veracode/veracode-pipeline-scan-results-to-sarif@v0.1.5
-  		with:
-    		# location of the pipeline json result file
-    		pipeline-results-json: # default is results.json
-    		# the path to the SARIF file as an output of the transformation
-    		output-results-sarif: # default is veracode-results.sarif
-    		# a path prefix conversion before publish in the SARIF file
-    		source-base-path-1: # optional, default is 
-    		# a path prefix conversion before publish in the SARIF file
-    		source-base-path-2: # optional, default is 
-    		# a path prefix conversion before publish in the SARIF file
-    		source-base-path-3: # optional, default is 
-    		# The conversion rule of Veracode findings to GitHub level
-    		finding-rule-level: # default is 4:3:0
-
+    
+    - name: Veracode Static Analysis Pipeline Scan and SARIF import
+  	uses: veracode/veracode-pipeline-scan-results-to-sarif@v0.1.5
+  	with:
+    	pipeline-results-json: # default is results.json
+	output-results-sarif: # default is veracode-results.sarif
+    	source-base-path-1: # optional, default is 
+	source-base-path-2: # optional, default is 
+    	source-base-path-3: # optional, default is 
+    	finding-rule-level: # default is 4:3:0  
+    
+  
