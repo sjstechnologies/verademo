@@ -33,8 +33,5 @@ jobs:
       with:
         pipeline-results-json: /home/runner/work/verademo/verademo/target/results.json
         output-results-sarif: /home/runner/work/verademo/verademo/target/veracode-results.sarif
-        source-base-path-1:
-        source-base-path-2:
-        source-base-path-3:
         finding-rule-level: 4:3:0
   
