@@ -31,10 +31,10 @@ jobs:
     - name: Veracode Static Analysis Pipeline Scan and SARIF import
       uses: veracode/veracode-pipeline-scan-results-to-sarif@v0.1.5
       with:
-      pipeline-results-json: results.json
-      output-results-sarif: /home/runner/work/verademo/verademo/target/veracode-results.sarif
-      source-base-path-1:
-      source-base-path-2:
-      source-base-path-3:
-      finding-rule-level: 4:3:0
+        pipeline-results-json: /home/runner/work/verademo/verademo/target/results.json
+        output-results-sarif: /home/runner/work/verademo/verademo/target/veracode-results.sarif
+        source-base-path-1:
+        source-base-path-2:
+        source-base-path-3:
+        finding-rule-level: 4:3:0
   
